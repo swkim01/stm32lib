@@ -238,10 +238,15 @@ typedef enum {
     GPIO_D13         = GPIO_PA_5,
 
     /* 일반 신호 이름 */
+#if defined(STM32F207ZG) || defined(STM32F303ZE) || defined(STM32F412ZG) || defined(STM32F413ZH) || defined(STM32F429ZI) || defined(STM32F446ZE) || defined(STM32F746ZI) || defined(STM32F746ZG) || defined(STM32F767ZI)
+    GPIO_LED1        = GPIO_PB_0,
+    GPIO_LED2        = GPIO_PB_7,
+    GPIO_LED3        = GPIO_PB_14,
+#else
     GPIO_LED1        = GPIO_PA_5,
     GPIO_LED2        = GPIO_PA_5,
     GPIO_LED3        = GPIO_PA_5,
-    GPIO_LED4        = GPIO_PA_5,
+#endif
     GPIO_USER_BUTTON = GPIO_PC_13,
     GPIO_SERIAL_TX   = GPIO_PA_2,
     GPIO_SERIAL_RX   = GPIO_PA_3,
