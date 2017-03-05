@@ -144,7 +144,73 @@ typedef enum {
     GPIO_PC_14 = 0x2E,
     GPIO_PC_15 = 0x2F,
 
-    GPIO_PD_2  = 0x3F,
+    GPIO_PD_0  = 0x30,
+    GPIO_PD_1  = 0x31,
+    GPIO_PD_2  = 0x32,
+    GPIO_PD_3  = 0x33,
+    GPIO_PD_4  = 0x34,
+    GPIO_PD_5  = 0x35,
+    GPIO_PD_6  = 0x36,
+    GPIO_PD_7  = 0x37,
+    GPIO_PD_8  = 0x38,
+    GPIO_PD_9  = 0x39,
+    GPIO_PD_10 = 0x3A,
+    GPIO_PD_11 = 0x3B,
+    GPIO_PD_12 = 0x3C,
+    GPIO_PD_13 = 0x3D,
+    GPIO_PD_14 = 0x3E,
+    GPIO_PD_15 = 0x3F,
+
+    GPIO_PE_0  = 0x40,
+    GPIO_PE_1  = 0x41,
+    GPIO_PE_2  = 0x42,
+    GPIO_PE_3  = 0x43,
+    GPIO_PE_4  = 0x44,
+    GPIO_PE_5  = 0x45,
+    GPIO_PE_6  = 0x46,
+    GPIO_PE_7  = 0x47,
+    GPIO_PE_8  = 0x48,
+    GPIO_PE_9  = 0x49,
+    GPIO_PE_10 = 0x4A,
+    GPIO_PE_11 = 0x4B,
+    GPIO_PE_12 = 0x4C,
+    GPIO_PE_13 = 0x4D,
+    GPIO_PE_14 = 0x4E,
+    GPIO_PE_15 = 0x4F,
+
+    GPIO_PF_0  = 0x50,
+    GPIO_PF_1  = 0x51,
+    GPIO_PF_2  = 0x52,
+    GPIO_PF_3  = 0x53,
+    GPIO_PF_4  = 0x54,
+    GPIO_PF_5  = 0x55,
+    GPIO_PF_6  = 0x56,
+    GPIO_PF_7  = 0x57,
+    GPIO_PF_8  = 0x58,
+    GPIO_PF_9  = 0x59,
+    GPIO_PF_10 = 0x5A,
+    GPIO_PF_11 = 0x5B,
+    GPIO_PF_12 = 0x5C,
+    GPIO_PF_13 = 0x5D,
+    GPIO_PF_14 = 0x5E,
+    GPIO_PF_15 = 0x5F,
+
+    GPIO_PG_0  = 0x60,
+    GPIO_PG_1  = 0x61,
+    GPIO_PG_2  = 0x62,
+    GPIO_PG_3  = 0x63,
+    GPIO_PG_4  = 0x64,
+    GPIO_PG_5  = 0x65,
+    GPIO_PG_6  = 0x66,
+    GPIO_PG_7  = 0x67,
+    GPIO_PG_8  = 0x68,
+    GPIO_PG_9  = 0x69,
+    GPIO_PG_10 = 0x6A,
+    GPIO_PG_11 = 0x6B,
+    GPIO_PG_12 = 0x6C,
+    GPIO_PG_13 = 0x6D,
+    GPIO_PG_14 = 0x6E,
+    GPIO_PG_15 = 0x6F,
 
     GPIO_PH_0  = 0x7F,
     GPIO_PH_1  = 0x7F,
@@ -200,7 +266,8 @@ typedef enum {
     GPIO_IN   = 0x00, /*!< GPIO 핀을 범용 입력으로 설정 */
     GPIO_OUT  = 0x01, /*!< GPIO 핀을 범용 출력으로 설정 */
     GPIO_AF   = 0x02, /*!< GPIO 핀을 대체 기능으로 설정 */
-    GPIO_OD   = 0x03, /*!< GPIO 핀을 출력 드레인으로 설정 */
+    GPIO_OD   = 0x12, /*!< GPIO 핀을 출력 드레인으로 설정 */
+    GPIO_AN   = 0x03, /*!< GPIO 핀을 ANALOG로 설정 */
     GPIO_IT   = 0x00010000, /*!< GPIO 핀을 인터럽트 소스로 설정 */
     GPIO_EVT  = 0x00020000, /*!< GPIO 핀을 이벤트 소스로 설정 */
     GPIO_EXTI = 0x10000000, /*!< GPIO 핀을 외부 인터럽트로 설정 */
@@ -348,6 +415,11 @@ GPIO_TypeDef* gpio_get_port_base(GPIO_Pin_t GPIO_Pin);
 /**
  * @}
  */
+
+/**
+ * @}
+ */
+
 /**
  * @}
  */

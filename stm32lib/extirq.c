@@ -251,7 +251,9 @@ static uint32_t get_irqvector(GPIO_Pin_t GPIO_Pin)
 EXTIRQ_Res_t extirq_init(GPIO_Pin_t GPIO_Pin, EXTIRQ_Callback_t callback, EXTIRQ_Edge_t edge)
 {
     IRQn_Type irq_n = (IRQn_Type)-15;
+#if NVIC_RAM_IRQVECTOR
     uint32_t vector = -1;
+#endif
     EXTIRQ_LINE_t *irq_line;
     GPIO_TypeDef *GPIOx = gpio_get_port_base(GPIO_Pin);
     uint32_t pin_index  = GPIO_PIN_VALUE(GPIO_Pin);
