@@ -177,11 +177,9 @@ typedef uint32_t SSD1331_Color_t;
 /**
  * @brief  SSD1331 그래픽 장치를 초기화한다
  * @param  없음
- * @retval 초기화 상태:
- *           - 0: 장치가 SPI 포트에서 감지되지 않음
- *           - > 0: 장치 가 정상적으로 초기화되어 사용 준비가 됨
+ * @retval 없음
  */
-uint8_t ssd1331_init(void);
+void ssd1331_init(void);
 
 /** 
  * @brief  전체 그래픽 장치를 원하는 색으로 채운다
@@ -212,7 +210,7 @@ void ssd1331_gotoxy(uint16_t x, uint16_t y);
  * @param  ch: 쓰여질 글자
  * @param  *font: 사용된 폰트에 대한 @ref Font_t 구조체의 포인터
  * @param  color: 그리는 데 사용할 색. 이 매개변수는 @ref SSD1331_Color_t 자료형 값
- * @retval 쓰여진 글자
+ * @retval 쓰여진 글자 수(=1 or 0)
  */
 char ssd1331_putc(uint16_t ch, Font_t *font, SSD1331_Color_t color, uint8_t size);
 char ssd1331_putc_gfx(uint16_t ch, Font_t* font, SSD1331_Color_t color, uint8_t size);
@@ -223,7 +221,7 @@ char ssd1331_putc_hangul(uint16_t ch, Font_t* font, SSD1331_Color_t color, uint8
  * @param  *str: 쓰여질 문자열
  * @param  *fontset: 사용된 폰트셋에 대한 @ref FontSet_t 구조체의 포인터
  * @param  color: 그리는 데 사용할 색. 이 매개변수는 @ref SSD1331_Color_t 자료형 값
- * @retval 성공이면 0 또는 실패할 때의 글자 값
+ * @retval 쓰여진 글자 수
  */
 char ssd1331_puts(char* str, FontSet_t* fontset, SSD1331_Color_t color, uint8_t size);
 

@@ -139,6 +139,15 @@ SDA        PB9          I2C 를 위한 데이터 핀
  */
 
 /**
+ * @brief  SSD1306 결과 열거형
+ */
+typedef enum _SSD1306_Res_t {
+	SSD1306_RES_OK = 0x00,       /*!< 정상 OK */
+	SSD1306_RES_ERR,             /*!< 오류 */
+	SSD1306_RES_NOTCONNECT,      /*!< 지정된 슬레이브 주소를 가진 장치가 연결되지 않음 */
+} SSD1306_Res_t;
+
+/**
  * @brief  SSD1306 색깔 열거형
  */
 typedef enum {
@@ -160,10 +169,10 @@ typedef enum {
  * @brief  SSD1306 그래픽 장치를 초기화한다
  * @param  없음
  * @retval 초기화 상태:
- *           - 0: 장치가 I2C 포트에서 감지되지 않음
- *           - > 0: 장치 가 정상적으로 초기화되어 사용 준비가 됨
+ *            - SSD1306_RES_OK: 정상
+ *            - 다른 값: 다른 경우
  */
-uint8_t ssd1306_init(void);
+SSD1306_Res_t ssd1306_init(void);
 
 /** 
  * @brief  그래픽 장치의 내부 RAM 버퍼를 갱신한다
@@ -213,7 +222,7 @@ void ssd1306_gotoxy(uint16_t x, uint16_t y);
  * @param  ch: 쓰여질 글자
  * @param  *font: 사용된 폰트에 대한 @ref Font_t 구조체의 포인터
  * @param  color: 그리는 데 사용할 색. 이 매개변수는 @ref SSD1306_Color_t 열거형 값
- * @retval 쓰여진 글자
+ * @retval 쓰여진 글자 수(=1 or 0)
  */
 char ssd1306_putc(uint16_t ch, Font_t *font, SSD1306_Color_t color, uint8_t size);
 char ssd1306_putc_gfx(uint16_t ch, Font_t* font, SSD1306_Color_t color, uint8_t size);
@@ -225,7 +234,7 @@ char ssd1306_putc_hangul(uint16_t ch, Font_t* font, SSD1306_Color_t color, uint8
  * @param  *str: 쓰여질 문자열
  * @param  *fontset: 사용된 폰트셋에 대한 @ref FontSet_t 구조체의 포인터
  * @param  color: 그리는 데 사용할 색. 이 매개변수는 @ref SSD1306_Color_t 열거형 값
- * @retval 성공이면 0 또는 실패할 때의 글자 값
+ * @retval 쓰여진 글자 수
  */
 char ssd1306_puts(char* str, FontSet_t* fontset, SSD1306_Color_t color, uint8_t size);
 

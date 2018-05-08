@@ -107,7 +107,7 @@ typedef enum {
 /**
  * @brief PWM 핀 구조체
  */
-typedef struct pwm_pin_t {
+typedef struct PWM_Pin_t {
     PWM_t tim;  /*!< PWM_t */
     GPIO_Pin_t gpio;  /*!< GPIO_Pin_t gpio_pin */
     uint8_t alternate;

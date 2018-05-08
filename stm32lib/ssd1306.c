@@ -48,7 +48,7 @@ typedef struct {
 /* Private variable */
 static SSD1306_t SSD1306;
 
-uint8_t ssd1306_init(void)
+SSD1306_Res_t ssd1306_init(void)
 {
     /* I2C 초기화 */
     i2c_init(SSD1306_I2C, SSD1306_I2C_PINSPACK);
@@ -57,7 +57,7 @@ uint8_t ssd1306_init(void)
     /* 장치 연결 점검 */
     if (i2c_ready(SSD1306_I2C, SSD1306_I2C_ADDR) < 0) {
         /* 오류 반환 */
-        return -1;
+        return SSD1306_RES_NOTCONNECT;
     }
     //printf("ssd1306_init\r\n");
 
@@ -108,7 +108,7 @@ uint8_t ssd1306_init(void)
     SSD1306.initialized = 1;
     
     /* Return OK */
-    return 1;
+    return SSD1306_RES_OK;
 }
 
 void ssd1306_updatescreen(void)
@@ -211,8 +211,8 @@ char ssd1306_putc(uint16_t ch, Font_t *font, SSD1306_Color_t color, uint8_t size
     /* Increase pointer */
     //SSD1306.cursor_x += font->width * size;
     
-    /* Return character written */
-    return ch;
+    /* Return character count written */
+    return 1;
 }
 
 char ssd1306_putc_gfx(uint16_t ch, Font_t* font, SSD1306_Color_t color, uint8_t size)
@@ -247,7 +247,7 @@ char ssd1306_putc_gfx(uint16_t ch, Font_t* font, SSD1306_Color_t color, uint8_t 
             bits <<= 1;
         }
     }
-    return ch;
+    return 1;
 }
 
 char ssd1306_putc_hangul(uint16_t ch, Font_t* font, SSD1306_Color_t color, uint8_t size)
@@ -273,19 +273,21 @@ char ssd1306_putc_hangul(uint16_t ch, Font_t* font, SSD1306_Color_t color, uint8
         }
       }
     }
-    return ch;
+    return 1;
 }
 
 char ssd1306_puts(char* str, FontSet_t* fontset, SSD1306_Color_t color, uint8_t size)
 {
     int i;
     char c, c2, c3;
+    char count=0;
     uint16_t utf16;
     int cursor_x = SSD1306.cursor_x;
 
     /* Write characters */
     while (*str) {
         c = *str++;
+        count++;
 
         // convert utf-8 to unicode
         if (c <= 0x7F){
@@ -315,8 +317,8 @@ char ssd1306_puts(char* str, FontSet_t* fontset, SSD1306_Color_t color, uint8_t 
         }
     }
     
-    /* Everything OK, zero should be returned */
-    return *str;
+    /* Everything OK, char count should be returned */
+    return count;
 }
  
 
