@@ -383,10 +383,10 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
   memcpy(USBBuffer, Buf, USBPackSize);
   USB_received = 1;
 
-  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
-  USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+  //USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+  //USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 
-  HAL_UART_Transmit_DMA(&huart2, Buf, *Len);
+  //HAL_UART_Transmit_DMA(&huart2, Buf, *Len);
 
   return (USBD_OK);
   /* USER CODE END 6 */
@@ -458,6 +458,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim)
         memcpy(((uint8_t *)UserRxBufferFS+UserRxBufPtrIn), USBBuffer, USBPackSize);
       }
       UserRxBufPtrIn = ((UserRxBufPtrIn + USBPackSize) % APP_RX_DATA_SIZE);
+      HAL_UART_Transmit_DMA(&huart2, USBBuffer, USBPackSize);
     }
   }
 }
